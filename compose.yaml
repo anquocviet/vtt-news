@@ -5,13 +5,27 @@ services:
       - .env
     image: 'mongo:latest'
     environment:
-      - 'MONGO_INITDB_DATABASE=${DATABASE_NAME}'
-      - 'MONGO_INITDB_ROOT_PASSWORD=${DATABASE_PASS}'
-      - 'MONGO_INITDB_ROOT_USERNAME=${DATABASE_USER}'
+      - 'MONGO_INITDB_DATABASE=${MONGO_DATABASE_NAME}'
+      - 'MONGO_INITDB_ROOT_PASSWORD=${MONGO_DATABASE_PASS}'
+      - 'MONGO_INITDB_ROOT_USERNAME=${MONGO_DATABASE_USER}'
     ports:
       - '27018:27017'
     volumes:
       - 'mongodb_data:/data/db'
 
+  mariadb:
+    container_name: 'vtt-mariadb'
+    env_file:
+      - .env
+    image: 'mariadb:latest'
+    environment:
+      - 'MYSQL_ROOT_PASSWORD=${MARIA_DATABASE_PASS}'
+      - 'MYSQL_DATABASE=${MARIA_DATABASE_NAME}'
+    ports:
+      - '3307:3306'
+    volumes:
+      - 'mariadb_data:/var/lib/mysql'
+
 volumes:
   mongodb_data:
+  mariadb_data:
