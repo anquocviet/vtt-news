@@ -29,6 +29,10 @@ public class Post {
 
    private Instant updateAt;
 
+   private Instant publishAt;
+
+   private boolean isPublished;
+
    private User author;
 
    private String tagSearch;
